@@ -45,8 +45,13 @@ plot(gdp$ICSA, type = 'l')
 
 model <- lm(gdpgrowth ~ ICSA, data = gdp)
 summary(model)
-plot(model)
+pred <- predict(model)
+prednew <- predict(model, newdata = tail(gdp, 2))
 
-tail(gdp)
+pred <- c(pred, prednew)
+plot(pred, type = 'l')
 
-coef(model)[1] + coef(model)[2] * tail(unempq$ICSA, 2)
+# tail(gdp)
+prednew
+
+# coef(model)[1] + coef(model)[2] * tail(unempq$ICSA, 2)
